@@ -9,8 +9,8 @@ class Contacts:
             with open(self.f, 'r') as file:
                 self.emD = json.load(file)
         except FileNotFoundError:
-            print("Your file was not found")
-            pass
+           pass
+           # return self.emD
 
     def add_contact(self, /, *, id, first_name, last_name):
         if id in self.emD:
@@ -46,3 +46,6 @@ class Contacts:
         print("====================  ====================  ==========")
         for id, (first_name, last_name) in sorted(self.emD.items(), key=lambda item: (item[1][1], item[1][0])):
             print(f"{last_name:<22}{first_name:<22}{id}")
+
+    def set_name(self, *, name):
+        self.f = name

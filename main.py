@@ -21,11 +21,11 @@ while True:
         id = input("Enter phone number: ")
         first = input("Enter first name: ")
         last = input("Enter last name: ")
-        addc = contacts.add_contact(id=id, first_name=first, last_name=last)
-        if addc == "error":
+        add = contacts.add_contact(id=id, first_name=first, last_name=last)
+        if add == "error":
             print("Error, this contact already exists in the system")
         else:
-            print("Added: ", addc)
+            print("Added: ", add)
     elif prompt == "2":
         phone = input("Enter phone number: ")
         nfirst = input("Enter first name: ")
@@ -46,7 +46,7 @@ while True:
         contacts.print_contact()
     elif prompt == "5":
         filename = input("Enter new filename: ")
-        contacts = contacts.__init__(filename=filename)
+        contacts.set_name(name=filename)
         print(f"Filename set to {filename}")
     elif prompt == "6":
         break
