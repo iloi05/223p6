@@ -18,6 +18,7 @@ class Contacts:
         self.emD[id] = [first_name, last_name]
         sorted(self.emD.items(), key = lambda item: (item[1][1], item[1][0]))
         with open(self.f, 'w') as file:
+            print("Writing to", self.f)
             json.dump(self.emD, file)
         return {id: self.emD[id]}
     
