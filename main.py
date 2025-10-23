@@ -1,6 +1,8 @@
 from contacts import Contacts
 
 filename = "contacts.json"
+contacts = Contacts(filename=filename)
+
 
 choices = ["1", "2", "3", "4", "5", "6"]
 
@@ -16,14 +18,14 @@ while True:
     print()
     prompt = input("Enter menu choice: ")
     if prompt == "1":
-        phone = input("Enter phone number: ")
+        id = input("Enter phone number: ")
         first = input("Enter first name: ")
         last = input("Enter last name: ")
-        add = contacts.add_contact(id=phone, first_name=first, last_name=last)
-        if add == "error":
+        addc = contacts.add_contact(id=id, first_name=first, last_name=last)
+        if addc == "error":
             print("Error, this contact already exists in the system")
         else:
-            print("Added: ", add)
+            print("Added: ", addc)
     elif prompt == "2":
         phone = input("Enter phone number: ")
         nfirst = input("Enter first name: ")
@@ -44,7 +46,7 @@ while True:
         contacts.print_contact()
     elif prompt == "5":
         filename = input("Enter new filename: ")
-        contacts = Contacts(filename=filename)
+        contacts = contacts.__init__(filename=filename)
         print(f"Filename set to {filename}")
     elif prompt == "6":
         break

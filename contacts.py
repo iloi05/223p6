@@ -40,9 +40,9 @@ class Contacts:
         
         return del_c
     
-    def print_contact(self):
+    def print_contact(self): 
         print("==================== CONTACT LIST ====================")
         print("Last Name             First Name            Phone")
         print("====================  ====================  ==========")
         for id, (first_name, last_name) in sorted(self.emD.items(), key=lambda item: (item[1][1], item[1][0])):
-            print(f"{last_name:<20}{first_name:<10}{id}")
+            print(f"{last_name:<22}{first_name:<22}{id}")
