@@ -10,7 +10,6 @@ class Contacts:
                 self.emD = json.load(file)
         except FileNotFoundError:
            pass
-           # return self.emD
 
     def add_contact(self, /, *, id, first_name, last_name):
         if id in self.emD:
@@ -50,3 +49,6 @@ class Contacts:
 
     def set_name(self, *, name):
         self.f = name
+
+    def valid_phone(self, *, id):
+        return id.isdigit()
