@@ -1,3 +1,6 @@
+# Name: Ivy Loi
+# Date: 10/27/25
+# Purpose of file: Implement functions created in contacts.py
 from contacts import Contacts
 
 
@@ -21,19 +24,27 @@ while True:
     prompt = input("Enter menu choice: ")
     print()
     if prompt == "1":
+        # remove any white spaces w/ strip
         id = input("Enter phone number: ").strip()
+        # checking to see if the digits entered are valid (will only take numbers with filter)
         clean = ''.join(filter(str.isdigit, id))
         if not contacts.valid_phone(id=clean):
             print("That is not a valid phone number ... returning to main menu")
             continue
         else:    
             first = input("Enter first name: ")
-            last = input("Enter last name: ")
-            add = contacts.add_contact(id=id, first_name=first, last_name=last)
-            if add == "error":
-                print("Error, this contact already exists in the system")
+            if contacts.valid_first(first=first):
+                continue
             else:
-                print(f"Added: {first} {last}.")
+                last = input("Enter last name: ")
+                if contacts.valid_last(last=last):
+                    continue
+                else:
+                    add = contacts.add_contact(id=id, first_name=first, last_name=last)
+                    if add == "error":
+                        print("Error, this contact already exists in the system")
+                    else:
+                        print(f"Added: {first} {last}.")
     elif prompt == "2":
         id = input("Enter phone number: ")
         clean = ''.join(filter(str.isdigit, id))
@@ -42,13 +53,19 @@ while True:
             continue
         else:
             nfirst = input("Enter first name: ")
-            nlast = input("Enter last name: ")
-            mod = contacts.modify_contact(id=clean, first_name=nfirst, last_name=nlast)
-        if mod == "error":
-            print("Error, the phone number entered does not exist in the system")
-            continue
-        else:
-            print(f"Modified: {nfirst} {nlast}.")
+            if contacts.valid_first(first=nfirst):
+                continue
+            else:
+                nlast = input("Enter last name: ")
+                if contacts.valid_last(last=nlast):
+                    continue
+                else:
+                    mod = contacts.modify_contact(id=clean, first_name=nfirst, last_name=nlast)
+                    if mod == "error":
+                        print("Error, the phone number entered does not exist in the system")
+                        continue
+                    else:
+                        print(f"Modified: {nfirst} {nlast}.")
     elif prompt == "3":
         id = input("Enter phone number: ")
         clean = ''.join(filter(str.isdigit, id))
@@ -65,8 +82,11 @@ while True:
         contacts.print_contact()
     elif prompt == "5":
         filename = input("Enter new filename: ")
-        contacts.set_name(name=filename)
-        print(f"Filename set to {filename}")
+        result = contacts.set_name(name=filename)
+        if result == "error":
+            continue
+        else:
+            print(f"Filename set to {filename}")
     elif prompt == "6":
         break
     if prompt not in choices:
