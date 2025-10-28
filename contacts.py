@@ -77,13 +77,14 @@ class Contacts:
         return id.isdigit() and len(id) == 10
     
     def valid_first(self, *, first):
-        ''' Edge case that checks if first name is valid string '''
+        ''' Edge case that checks if first name is valid '''
         first = first.strip()
         if not first:
             print("First name entered is just a space, this is invalid, returning to main menu.")
             return "error"
         
     def valid_last(self, *, last):
+        ''' Edge case that checks if lst name is valid '''
         last = last.strip()
         if not last:
             print("Last name entered is just a space, this is invalid, returing to main menu.")
