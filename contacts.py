@@ -71,6 +71,15 @@ class Contacts:
             print("Directory does not exist.")
             return "error"
         self.f = name
+        # need this try except so that info inputed is saved into right file
+        try:
+            with open(self.f, 'r') as file:
+                self.emD = json.load(file)
+        except FileNotFoundError:
+            self.emD = {}
+            with open(self.f, 'w') as file:
+                json.dump(self.emD, file)
+        return{self.f: "loaded"}
 
     def valid_phone(self, *, id):
         ''' Edge case function that checks if phone number entered is valid'''
